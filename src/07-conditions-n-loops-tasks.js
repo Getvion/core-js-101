@@ -294,7 +294,6 @@ function getDigitalRoot(num) {
     .toString()
     .split('')
     .map((elem) => Number(elem));
-
   const sum = numArr.reduce((acc, curr) => acc + curr, 0);
 
   return sum > 9 ? getDigitalRoot(sum) : sum;
@@ -417,8 +416,19 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(p) {
+  if (p[0][0] && p[0][0] === p[0][1] && p[0][1] === p[0][2]) return p[0][2];
+  if (p[1][0] && p[1][0] === p[1][1] && p[1][1] === p[1][2]) return p[1][2];
+  if (p[2][0] && p[2][0] === p[2][1] && p[2][1] === p[2][2]) return p[2][2];
+
+  if (p[0][0] && p[0][0] === p[1][0] && p[1][0] === p[2][0]) return p[2][0];
+  if (p[0][1] && p[0][1] === p[1][1] && p[1][1] === p[2][1]) return p[2][1];
+  if (p[0][2] && p[0][2] === p[1][2] && p[1][2] === p[2][2]) return p[2][2];
+
+  if (p[0][0] && p[0][0] === p[1][1] && p[1][1] === p[2][2]) return p[2][2];
+  if (p[0][2] && p[0][2] === p[1][1] && p[1][1] === p[2][0]) return p[2][0];
+
+  return undefined;
 }
 
 module.exports = {
