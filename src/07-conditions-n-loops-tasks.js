@@ -290,15 +290,14 @@ function isCreditCardNumber(/* ccn */) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-  const numArr = num.toString().split('');
-  const summOfNumArray = numArr
-    .map((elem) => Number(elem))
-    .reduce((acc, curr) => acc + curr, 0);
-  const summedArr = summOfNumArray.toString().split('');
+  const numArr = num
+    .toString()
+    .split('')
+    .map((elem) => Number(elem));
 
-  return summedArr
-    .map((elem) => Number(elem))
-    .reduce((acc, curr) => acc + curr, 0);
+  const sum = numArr.reduce((acc, curr) => acc + curr, 0);
+
+  return sum > 9 ? getDigitalRoot(sum) : sum;
 }
 
 /**
