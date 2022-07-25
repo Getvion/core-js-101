@@ -196,10 +196,10 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  // return arr.join(',');
-
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  return arr
+    .map((item, i) => (i === arr.length - 1 ? item.toString() : `${item}\n`))
+    .join('');
 }
 
 /**
@@ -231,8 +231,15 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  const resultArr = [];
+  arr.reduce((acc, curr) => {
+    const summ = acc + curr;
+    resultArr.push(summ);
+    return summ;
+  }, 0);
+
+  return resultArr;
 }
 
 /**
@@ -455,8 +462,10 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const emptyArrOfArr = Array(n).fill(Array(n).fill(0));
+
+  return emptyArrOfArr.map((arr, i) => arr.map((_, j) => (i === j ? 1 : 0)));
 }
 
 /**
@@ -545,8 +554,8 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.map(childrenSelector).flat();
 }
 
 /**
